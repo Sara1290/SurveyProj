@@ -2,11 +2,13 @@ require('dotenv').config();
 const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
+const SurveyCtrl = require('./SurveyCtrl');
 
 const app = express();
 
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 
+//middleware
 app.use(express.json());
 
 app.use(session({
@@ -19,14 +21,21 @@ app.use(session({
 })
 );
 
+//endpoints
+app.get('/api/getAll', SurveyCtrl.getAll)
+app.post('/api/submit-high', SurveyCtrl.saveHighScore)
+app.post('/api/submit-med', SurveyCtrl.saveMedScore)
+app.post('/api/submit-low', SurveyCtrl.saveLowScore)
+
+//port stuff
 massive ({
-  CONNECTION_STRING: CONNECTION_STRING,
-  ssl: {
-    rejectUnauthorized: false,
-  }
+    connectionString : CONNECTION_STRING,
+    ssl : {
+        rejectUnauthorized: false,
+    }
 })
 .then(db => {
-  app.set("db", db);
-  app.listen(SERVER_PORT, () => console.log(`DB up and Server Running on ${SERVER_PORT}`))
+    app.set("db", db);
+    app.listen(SERVER_PORT, () => console.log(`Db Up And Server Running On ${SERVER_PORT}`));
 })
 .catch(err => console.log(err));

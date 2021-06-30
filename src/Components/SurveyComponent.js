@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 import * as Survey from "survey-react";
 import "survey-react/modern.css";
@@ -56,7 +57,7 @@ class SurveyComponent extends Component {
                     ],
                     "hasOther": true,
                     "choices": [
-                        "Safety",
+                        "Atmosphere",
                         "Confidentiality",
                         "Quality",
                         "Thoroughness"
@@ -84,6 +85,13 @@ class SurveyComponent extends Component {
 ;
 const survey = new Survey.Model(json);
 
+survey.onComplete.add(function (nps_score, safety, confidentiality, thoroughness) {
+    axios.post("/api/submit-high", {nps_score, safety, confidentiality, thoroughness})
+    .then(res => {
+         console.log("Survey Completed, Thank you.")
+    })
+    .catch((err) => console.log(err))
+});
 
 
 

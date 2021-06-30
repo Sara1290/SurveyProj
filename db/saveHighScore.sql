@@ -1,4 +1,4 @@
 INSERT INTO user_responses
-(nps_score, Safety, Confidentiality, Quality, Thoroughness)
+(nps_score, atmosphere, confidentiality, quality, thoroughness)
 VALUES 
 ($1, $2, $3, $4, $5);
