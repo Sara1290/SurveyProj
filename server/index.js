@@ -13,6 +13,9 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   secret: SESSION_SECRET,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
 })
 );
 
@@ -24,6 +27,6 @@ massive ({
 })
 .then(db => {
   app.set("db", db);
-  app.listen(SERVER_PORT, () => console.log(`DB up and running on ${SERVER_PORT}`))
+  app.listen(SERVER_PORT, () => console.log(`DB up and Server Running on ${SERVER_PORT}`))
 })
 .catch(err => console.log(err));
