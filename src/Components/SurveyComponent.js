@@ -21,7 +21,7 @@ class SurveyComponent extends Component {
             "completedHtmlOnCondition": [
                 {
                     "expression": "{nps_score} > 8",
-                    "html": "<h3>Thank you for your feedback.</h3> <h5>We glad that you love our product. Your ideas and suggestions will help us to make our product even better!</h5>"
+                    "html": "<h3>Thanks</h3> <h5>We glad that you love our product. Your ideas and suggestions will help us to make our product even better!</h5>"
                 },
                 {
     "expression": "{nps_score} < 7",
@@ -57,10 +57,10 @@ class SurveyComponent extends Component {
                     ],
                     "hasOther": true,
                     "choices": [
-                        "Atmosphere",
-                        "Confidentiality",
-                        "Quality",
-                        "Thoroughness"
+                        "atmosphere",
+                        "confidentiality",
+                        "quality",
+                        "thoroughness"
                     ],
                     "otherText": "Other feature:",
                     "colCount": 2
@@ -85,14 +85,32 @@ class SurveyComponent extends Component {
 ;
 const survey = new Survey.Model(json);
 
-survey.onComplete.add(function (nps_score, safety, confidentiality, thoroughness) {
-    axios.post("/api/submit-high", {nps_score, safety, confidentiality, thoroughness})
-    .then(res => {
-         console.log("Survey Completed, Thank you.")
+// survey.onComplete.add(function (sender, options) {
+//     let xhr = new XMLHttpRequest();
+//     xhr.open('POST', `https://cors.bridged.cc/https://pgweb-demo.herokuapp.com/#`, 'reedsara90@gmail.com', 'Canary10!');
+//     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+//     xhr.send(JSON.stringify(sender.data));
+// });
+
+survey.onComplete.add(function (nps_score, sender, options) {
+    console.log(nps_score)
+    let xhr = new XMLHttpRequest()
+    xhr.open('POST', `https://cors.bridged.cc/https://pgweb-demo.herokuapp.com/#`, 'reedsara90@gmail.com', 'Canary10!');
+    axios.post("/api/submit-high", {nps_score, sender, options})
+    .then(() => {
+        xhr.send(JSON.stringify(sender.data));
     })
     .catch((err) => console.log(err))
 });
 
+// survey.onComplete.add(function (sender, nps_score, atmosphere, confidentiality, thoroughness, comment) {
+//     console.log(sender);
+//     axios.post("/api/submit-med", {nps_score, atmosphere, confidentiality, thoroughness, comment})
+//     .then(res => {
+//          console.log("Survey Completed, Thank you.")
+//     })
+//     .catch((err) => console.log(err))
+// });
 
 
 
