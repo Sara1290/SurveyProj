@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { Component } from "react";
 import * as Survey from "survey-react";
 import "survey-react/modern.css";
@@ -32,85 +32,150 @@ class SurveyComponent extends Component {
      {
          "name": "page1",
          "elements": [
+            {
+                "type": "text",
+                "name": "name",
+                "title": "Please enter your name:"
+            },
+            {
+                "type": "dropdown",
+                "name": "feelings",
+                "title": "How are you feeling today",
+                "choices": [
+                    "Fantastic", 
+                    "Great",
+                    "Good", 
+                    "Okay", 
+                    "Numb", 
+                    "Not Great", 
+                    "Bad", 
+                    "Horrible" 
+                ] 
+            },
+
              {
                  "type": "rating",
                  "name": "nps_score",
-                 "title": "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
+                 "title": "On a scale of zero to ten, how do you feel at work most days?",
                  "isRequired": true,
                  "rateMin": 0,
                  "rateMax": 10,
-                 "minRateDescription": "(NAH)",
-                 "maxRateDescription": "(SUPER DUPER LIKELY)"
+                 "minRateDescription": "(Horrible)",
+                 "maxRateDescription": "(Fantastic)"
                 },
                 {
                     "type": "checkbox",
                     "name": "promoter_features",
                     "visibleIf": "{nps_score} >= 9",
-                    "title": "What features do you value the most?",
+                    "title": "What positive emotions did you have today?",
                     "isRequired": true,
-                    "validators": [
-                        {
-                            "type": "answercount",
-                            "text": "Please select two features maximum.",
-                            "maxCount": 2
-                        }
-                    ],
                     "hasOther": true,
                     "choices": [
-                        "atmosphere",
-                        "confidentiality",
-                        "quality",
-                        "thoroughness"
+                        "Joy",
+                        "Security",
+                        "Optimism",
+                        "Happiness"
                     ],
-                    "otherText": "Other feature:",
-                    "colCount": 2
                 },
     {
         "type": "comment",
         "name": "passive_experience",
         "visibleIf": "{nps_score} > 5  and {nps_score} <= 8",
-        "title": "What is the primary reason for your score?"
+        "title": "Seems like today was okay. What's the primary reason for you score?"
     },
     {
         "type": "comment",
         "name": "disappointed_experience",
         "visibleIf": "{nps_score} <= 5",
-        "title": "What was disapointing about your experience with us?"
+        "title": "What made today hard for you?"
+    }, 
+
+    {
+        "type": "radiogroup",
+        "name": "How did you feel yesterday", 
+        "title": "How did you feel yesterday",
+        "choices": [
+            "Good",
+            "Great", 
+            "Terrible", 
+            "Sad"
+        ]
+    },
+    {
+        "type": "boolean", 
+        "name": "yes or no", 
+        "title": "YES or NO"
+    },
+    {
+        "type": "matrix", 
+        "name": "matrix-response",
+        "title": "Please rate each feeling according to how you feel now",
+        "columns": [
+            {
+                "value": 1, 
+                "text": "Agree"
+            },
+            {
+                "value": 2, 
+                "text": "Neutral"
+            }, 
+            {
+                "value": 3, 
+                "text": "Disagree"
+            }
+        ], 
+        "rows": [
+            {
+                "value": 1,
+                "text": "Happy"
+            }, 
+            {
+                "value": 2, 
+                "text": "Sad"
+            }, 
+            {
+                "value": 3,
+                "text": "Neutral"
+            }
+        ]
+    },
+    {
+        "type": "comment", 
+        "name": "feedback", 
+        "title": "What else would you like to share about how you're feeling today?"
+    }, 
+    {
+        "type": "text", 
+        "name": "today's date",
+        "inputType": "date", 
+        "title": "Today's Date"
+    }, 
+    {
+        "type": "text", 
+        "name": "color", 
+        "inputType": "color", 
+        "title": "Your Favorite Color"
     }
-]
+],
+
+
 }
+
 ],
 "showQuestionNumbers": "off"
-}
-;
+
+};
+
 const survey = new Survey.Model(json);
 
-// survey.onComplete.add(function (sender, options) {
-//     let xhr = new XMLHttpRequest();
-//     xhr.open('POST', `https://cors.bridged.cc/https://pgweb-demo.herokuapp.com/#`, 'reedsara90@gmail.com', 'Canary10!');
-//     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-//     xhr.send(JSON.stringify(sender.data));
-// });
 
-survey.onComplete.add(function (nps_score, sender, options) {
-    console.log(nps_score)
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', `https://cors.bridged.cc/https://pgweb-demo.herokuapp.com/#`, 'reedsara90@gmail.com', 'Canary10!');
-    axios.post("/api/submit-high", {nps_score, sender, options})
-    .then(() => {
-        xhr.send(JSON.stringify(sender.data));
-    })
-    .catch((err) => console.log(err))
+survey.onComplete.add(function (sender, options) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/submit");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    xhr.send(JSON.stringify(sender.data));
+    (console.log(sender.data))
 });
-
-// survey.onComplete.add(function (sender, nps_score, atmosphere, confidentiality, thoroughness, comment) {
-//     console.log(sender);
-//     axios.post("/api/submit-med", {nps_score, atmosphere, confidentiality, thoroughness, comment})
-//     .then(res => {
-//          console.log("Survey Completed, Thank you.")
-//     })
-//     .catch((err) => console.log(err))
-// });
 
 
 

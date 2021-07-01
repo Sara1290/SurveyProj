@@ -23,9 +23,8 @@ app.use(session({
 
 //endpoints
 app.get('/api/getAll', SurveyCtrl.getAll)
-app.post('/api/submit-high', SurveyCtrl.saveHighScore)
-app.post('/api/submit-med', SurveyCtrl.saveMedScore)
-app.post('/api/submit-low', SurveyCtrl.saveLowScore)
+app.post('/api/submit', SurveyCtrl.saveResponse)
+
 
 //port stuff
 massive ({
