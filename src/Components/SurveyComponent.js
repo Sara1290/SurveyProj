@@ -40,6 +40,7 @@ class SurveyComponent extends Component {
             {
                 "type": "dropdown",
                 "name": "feelings",
+                "isRequired": true,
                 "title": "How are you feeling today",
                 "choices": [
                     "Fantastic", 
