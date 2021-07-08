@@ -21,19 +21,19 @@ app.use(session({
   }
 })
 );
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", '*');
+//   next();
+// });
 
 
-fetch(`${API_BASE_URL}/dept/post/`, {
-      method: 'POST',
-      credentials: 'include', 
-    })
-      .then((res) => {
+// fetch(`${API_BASE_URL}/dept/post/`, {
+//       method: 'POST',
+//       credentials: 'include', 
+//     })
+//       .then((res) => {
         
-      });
+//       });
 
 //endpoints
 app.get('/api/getAll', SurveyCtrl.getAll)
