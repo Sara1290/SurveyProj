@@ -2,7 +2,7 @@
   "name": "surveyjs",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4545",
+  "proxy": "https://previdence-survey.netlify.app/",
   "main": "server/index",
  
   "dependencies": {
