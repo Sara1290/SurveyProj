@@ -20,6 +20,28 @@ app.use(session({
   }
 })
 );
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", CLIENT_ORIGIN);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+  res.header("Access-Control-Allow-Credentials", true); 
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
+
+// fetch(`${API_BASE_URL}/dept/get/`, {
+//       method: 'POST',
+//       credentials: 'include', 
+//     })
+//       .then((res) => {
+//         sendStatus(200)
+//       });
 
 //endpoints
 app.get('/api/getAll', SurveyCtrl.getAll)
@@ -28,7 +50,7 @@ app.post('/api/submit', SurveyCtrl.saveResponse)
 
 //port stuff
 massive ({
-    connectionString : 'postgres://asehehahszkryh:552417fa473d19f6f490b9ef0d2be808db533287543a47a4dd84329f6041cc89@ec2-54-145-102-149.compute-1.amazonaws.com:5432/d5e4h7i0t16jgs',
+    connectionString : CONNECTION_STRING,
     ssl : {
         rejectUnauthorized: false,
     }
