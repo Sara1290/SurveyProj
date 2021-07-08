@@ -184,7 +184,7 @@ const survey = new Survey.Model(json);
 
 survey.onComplete.add(function (sender, options) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/api/submit');
+    xhr.open("POST", 'https://cors.bridged.cc/https://previdence-survey.netlify.app/api/submit');
     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     xhr.send(JSON.stringify(sender.data));
     (console.log(sender.data))
