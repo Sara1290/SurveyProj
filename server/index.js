@@ -28,7 +28,7 @@ app.post('/api/submit', SurveyCtrl.saveResponse)
 
 //port stuff
 massive ({
-    connectionString : CONNECTION_STRING,
+    connectionString : 'postgres://asehehahszkryh:552417fa473d19f6f490b9ef0d2be808db533287543a47a4dd84329f6041cc89@ec2-54-145-102-149.compute-1.amazonaws.com:5432/d5e4h7i0t16jgs',
     ssl : {
         rejectUnauthorized: false,
     }
