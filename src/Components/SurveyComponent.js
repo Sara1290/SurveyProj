@@ -183,13 +183,13 @@ class SurveyComponent extends Component {
 const survey = new Survey.Model(json);
 
 
-survey.onComplete.add(function (sender, options) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/api/submit');
-    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-    xhr.send(JSON.stringify(sender.data));
-    (console.log(sender.data))
-});
+// survey.onComplete.add(function (sender, options) {
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("POST", '/api/submit');
+//     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+//     xhr.send(JSON.stringify(sender.data));
+//     (console.log(sender.data))
+// });
 
 
 
