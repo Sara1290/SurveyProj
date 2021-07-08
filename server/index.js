@@ -2,12 +2,13 @@ require('dotenv').config();
 const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
+const fetch = require("node-fetch");
 const SurveyCtrl = require('./SurveyCtrl');
 
 const app = express();
 
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
-
+const API_BASE_URL = 'https://previdence-survey.netlify.app/'
 //middleware
 app.use(express.json());
 
@@ -26,13 +27,13 @@ app.use(function(req, res, next) {
 });
 
 
-// fetch(`${API_BASE_URL}/dept/get/`, {
-//       method: 'POST',
-//       credentials: 'include', 
-//     })
-//       .then((res) => {
-//         sendStatus(200)
-//       });
+fetch(`${API_BASE_URL}/dept/post/`, {
+      method: 'POST',
+      credentials: 'include', 
+    })
+      .then((res) => {
+        
+      });
 
 //endpoints
 app.get('/api/getAll', SurveyCtrl.getAll)

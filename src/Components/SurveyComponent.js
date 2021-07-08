@@ -179,13 +179,13 @@ class SurveyComponent extends Component {
 
 };
 
-const key = process.env.ACCESS_TOKEN
+
 const survey = new Survey.Model(json);
 
 
 survey.onComplete.add(function (sender, options) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", `https://cors.bridged.cc/https://previdence-survey.netlify.app/api/submit&key=${key}`);
+    xhr.open("POST", '/api/submit');
     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     xhr.send(JSON.stringify(sender.data));
     (console.log(sender.data))
