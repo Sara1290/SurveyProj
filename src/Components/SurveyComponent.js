@@ -34,7 +34,7 @@ class SurveyComponent extends Component {
          "elements": [
             {
                 "type": "text",
-                "name": "name",
+                "name": "name_of_user",
                 "title": "Please enter your name:"
             },
             {
@@ -72,10 +72,22 @@ class SurveyComponent extends Component {
                     "isRequired": true,
                     "hasOther": true,
                     "choices": [
-                        "Joy",
-                        "Security",
-                        "Optimism",
-                        "Happiness"
+                        {
+                            "value": 0,
+                            "text": "Joy"
+                        },
+                        {
+                            "value": 1, 
+                            "text": "Security"
+                        },
+                        {
+                            "value": 2, 
+                            "text": "Optimism"
+                        },
+                        {
+                            "value": 3, 
+                            "text": "Happiness"
+                        }
                     ],
                 },
     {
@@ -93,7 +105,7 @@ class SurveyComponent extends Component {
 
     {
         "type": "radiogroup",
-        "name": "How did you feel yesterday", 
+        "name": "How_did_you_feel_yesterday", 
         "title": "How did you feel yesterday",
         "choices": [
             "Good",
@@ -104,38 +116,38 @@ class SurveyComponent extends Component {
     },
     {
         "type": "boolean", 
-        "name": "yes or no", 
+        "name": "true_false", 
         "title": "YES or NO"
     },
     {
         "type": "matrix", 
-        "name": "matrix-response",
+        "name": "matrix_response",
         "title": "Please rate each feeling according to how you feel now",
         "columns": [
             {
-                "value": 1, 
+                "value": "Agree", 
                 "text": "Agree"
             },
             {
-                "value": 2, 
+                "value": "Neutral", 
                 "text": "Neutral"
             }, 
             {
-                "value": 3, 
+                "value": "Disagree", 
                 "text": "Disagree"
             }
         ], 
         "rows": [
             {
-                "value": 1,
+                "value": "Happy",
                 "text": "Happy"
             }, 
             {
-                "value": 2, 
+                "value": "Sad", 
                 "text": "Sad"
             }, 
             {
-                "value": 3,
+                "value": "Neutral",
                 "text": "Neutral"
             }
         ]
@@ -147,7 +159,7 @@ class SurveyComponent extends Component {
     }, 
     {
         "type": "text", 
-        "name": "today's date",
+        "name": "date_taken",
         "inputType": "date", 
         "title": "Today's Date"
     }, 

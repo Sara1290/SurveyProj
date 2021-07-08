@@ -11,9 +11,9 @@ module.exports = {
   saveResponse: (req, res) => {
     const db = req.app.get('db')
 
-    const {nps_score, promoter_features, passive_experience, disappointed_experience} = req.body;
+    const {nps_score, How_did_you_feel_yesterday, feedback, feelings, matrix_response, name_of_user, promoter_features, passive_experience, disappointed_experience, date_taken, true_false} = req.body;
 
-    return db.saveResponse([nps_score, promoter_features, passive_experience, disappointed_experience])
+    return db.saveResponse([nps_score, How_did_you_feel_yesterday, feedback, feelings, matrix_response, name_of_user, promoter_features, passive_experience, disappointed_experience, date_taken, true_false])
     .then(() => res.sendStatus(200))
     .catch((err) => console.log(err))
   },
