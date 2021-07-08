@@ -12,7 +12,7 @@ class SurveyComponent extends Component {
         
     // }
     render() {
-        const key=process.env.ACCESS_TOKEN
+        
         
         
         //example from the sandbox
@@ -179,6 +179,7 @@ class SurveyComponent extends Component {
 
 };
 
+const key = process.env.ACCESS_TOKEN
 const survey = new Survey.Model(json);
 
 
