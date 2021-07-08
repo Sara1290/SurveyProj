@@ -2,13 +2,13 @@ require('dotenv').config();
 const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 const SurveyCtrl = require('./SurveyCtrl');
 
 const app = express();
 
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
-const API_BASE_URL = 'https://previdence-survey.netlify.app/'
+// const API_BASE_URL = 'https://previdence-survey.netlify.app/'
 //middleware
 app.use(express.json());
 
