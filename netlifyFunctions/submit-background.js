@@ -13,7 +13,7 @@ const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
 // const fetch = require("node-fetch");
-const SurveyCtrl = require('./SurveyCtrl');
+const SurveyCtrl = require('..server/SurveyCtrl');
 
 const { CONNECTION_STRING } = process.env;
 
