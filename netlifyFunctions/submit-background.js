@@ -14,6 +14,7 @@ const express = require('express');
 const session = require('express-session');
 // const fetch = require("node-fetch");
 const SurveyCtrl = require('..server/SurveyCtrl');
+const serverless = require('serverless-http')
 
 
 exports.handler = async function (event) {
