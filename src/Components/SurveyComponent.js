@@ -181,6 +181,7 @@ class SurveyComponent extends Component {
 
 
 const survey = new Survey.Model(json);
+survey.surveyPostId = "bf49c98c-b5fa-4caa-a24c-5c186a2384de"
 
 
 survey.onComplete.add(function (sender, options) {

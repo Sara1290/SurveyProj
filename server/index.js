@@ -5,9 +5,14 @@ const session = require('express-session');
 // const fetch = require("node-fetch");
 const SurveyCtrl = require('./SurveyCtrl');
 
+const ngrok = require('ngrok');
+(async function() {
+  const url = await ngrok.connect();
+})();
+
 const app = express();
 
-const { SERVER_PORT, SESSION_SECRET, connectionstring} = process.env;
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
 // const API_BASE_URL = 'https://previdence-survey.netlify.app/'
 //middleware
 app.use(express.json());
@@ -42,7 +47,7 @@ app.post('/api/submit', SurveyCtrl.saveResponse)
 
 //port stuff
 massive ({
-    connectionString : connectionstring,
+    connectionString : CONNECTION_STRING,
     ssl : {
         rejectUnauthorized: false,
     }
