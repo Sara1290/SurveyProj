@@ -12,10 +12,11 @@ require('dotenv').config();
 const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
-// const fetch = require("node-fetch");
-const SurveyCtrl = require('..server/SurveyCtrl');
+const SurveyCtrl = require('../server/SurveyCtrl');
 const serverless = require('serverless-http')
+const app = express();
 
+app.post('/api/submit', SurveyCtrl.saveResponse)
 
 exports.handler = async function (event) {
   const { CONNECTION_STRING } = process.env;
