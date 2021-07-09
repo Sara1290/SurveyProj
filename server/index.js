@@ -7,7 +7,7 @@ const SurveyCtrl = require('./SurveyCtrl');
 
 const app = express();
 
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env;
+const { SERVER_PORT, SESSION_SECRET, connectionstring} = process.env;
 // const API_BASE_URL = 'https://previdence-survey.netlify.app/'
 //middleware
 app.use(express.json());
@@ -42,7 +42,7 @@ app.post('/api/submit', SurveyCtrl.saveResponse)
 
 //port stuff
 massive ({
-    connectionString : CONNECTION_STRING,
+    connectionString : connectionstring,
     ssl : {
         rejectUnauthorized: false,
     }
